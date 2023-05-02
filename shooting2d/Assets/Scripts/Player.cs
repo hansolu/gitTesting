@@ -2,20 +2,29 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Player : MonoBehaviour
+public class Player : MonoBehaviour,IAttack
 {
     public Transform bulletPoint;
     Rigidbody2D rigid;
+    Animator anim;
     Vector2 vec = Vector2.zero;
     float speed = 5;    
     float halfwidth = 0;
     float halfheight = 0;
     float shootInterval = 0.5f;
     float shootIntervalCheck = 0;
+
+    float HP = 0; 
+    float HPMax = 0;
+
     bool isShootable = true;
+    
     void Start()
     {
+        HP = 100; //원하는 피양을 대충 설정해주고.. 
+        HPMax = 100;
         rigid = GetComponent<Rigidbody2D>();
+        anim = GetComponent<Animator>(); //이 스크립트가 달린 게임오브젝트에 정확히 달려있다는 전제하에 진행..       
         halfheight = GameManager.Instance.Height - 0.5f; //내 그림 길이가 대충 세로값이 1이므로 절반인 0.5를 빼준것을 기준으로 갖도록 한다
         halfwidth = GameManager.Instance.Width - 0.5f;//내 그림 길이의 가로 값이 대충 0.5이므로 절반인 0.25를 빼준것을 기준으로.
         isShootable = true;
@@ -26,6 +35,8 @@ public class Player : MonoBehaviour
         //인풋 하는대로 좌우상하로 움직이도록 코드 짜주세요...
         vec.x = Input.GetAxisRaw("Horizontal");
         vec.y = Input.GetAxisRaw("Vertical");
+        anim.SetFloat("MoveX", vec.x);
+
         if (isShootable == false)//이미 총을 쏴서 시간 체크가 필요한 상태
         {
             shootIntervalCheck += Time.deltaTime;
@@ -80,5 +91,20 @@ public class Player : MonoBehaviour
             transform.position = vec;
         }
     }
-    
+
+    public void Attacked(float damage) //나의 피격
+    {
+        HP -= damage; //총알이 나의 콜라이더와 부딪혔을때, 애가 이 함수를 불러서 내게 데미지를 줄 것임.
+        Debug.Log("현재 나의 체력 : "+HP);
+        anim.SetTrigger("Hit");
+    }
+
+    void OnTriggerEnter2D(Collider2D collision)//
+    {
+        if (collision.gameObject.CompareTag("Enemy")) //
+        {
+            Debug.Log("적과 충돌했음");
+            Attacked(5);            
+        }
+    }
 }
