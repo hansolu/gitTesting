@@ -16,7 +16,7 @@ public class Player : MonoBehaviour,IAttack
 
     float HP = 0; 
     float HPMax = 0;
-
+    float power = 5;
     bool isShootable = true;
     
     void Start()
@@ -27,7 +27,9 @@ public class Player : MonoBehaviour,IAttack
         anim = GetComponent<Animator>(); //이 스크립트가 달린 게임오브젝트에 정확히 달려있다는 전제하에 진행..       
         halfheight = GameManager.Instance.Height - 0.5f; //내 그림 길이가 대충 세로값이 1이므로 절반인 0.5를 빼준것을 기준으로 갖도록 한다
         halfwidth = GameManager.Instance.Width - 0.5f;//내 그림 길이의 가로 값이 대충 0.5이므로 절반인 0.25를 빼준것을 기준으로.
-        isShootable = true;
+
+        GameManager.Instance.SetPlayer(this);
+        isShootable = true;        
     }
  
     void Update()
@@ -53,7 +55,8 @@ public class Player : MonoBehaviour,IAttack
             {                
                 isShootable = false;
                 //게임매니저에게 총알 생성해달라고 요청.   
-                GameManager.Instance.CreateBullet(bulletPoint.position, true);
+                GameManager.Instance.CreateBullet(bulletPoint.position, true,
+                    GameManager.Instance.BulletSprites[(int)CTEnum.BulletKind.PlayerBullet],Vector2.up, power);
             }
         }        
     }
