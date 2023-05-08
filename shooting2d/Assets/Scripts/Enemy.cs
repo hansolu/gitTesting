@@ -56,6 +56,23 @@ public class Enemy : MonoBehaviour,IAttack //인터페이스 달아주고
 
     public void Die() //죽었으면 작동중지 시키고, 게임매니저의 풀로 돌려보내기
     {
+        CTEnum.ItemKind _kind = (CTEnum.ItemKind)Random.Range(0, (int)CTEnum.ItemKind.End);
+
+        switch (_kind)
+        {
+            case CTEnum.ItemKind.PowerUp:
+                CTItem_PowerUp _powerup = new CTItem_PowerUp();
+                _powerup.damage = 3;//이것도 랜덤으로 주던지.. 값을 정해서 주던지...
+                ItemManager.Instance.CreateItem(_kind, transform.position , _powerup as CTStructure_Item);
+                break;
+            case CTEnum.ItemKind.HPUp:
+
+                break;            
+            default:
+                break;
+        }
+        
+        //애를 끄고 뭐하고 하는 작업 하기전에
         InActive();
         GameManager.Instance.ReturnToPool(this);
     }

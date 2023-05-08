@@ -16,7 +16,7 @@ public class Player : MonoBehaviour,IAttack
 
     float HP = 0; 
     float HPMax = 0;
-    float power = 5;
+    int power = 5; //공격력
     bool isShootable = true;
     
     void Start()
@@ -56,7 +56,7 @@ public class Player : MonoBehaviour,IAttack
                 isShootable = false;
                 //게임매니저에게 총알 생성해달라고 요청.   
                 GameManager.Instance.CreateBullet(bulletPoint.position, true,
-                    GameManager.Instance.BulletSprites[(int)CTEnum.BulletKind.PlayerBullet],Vector2.up, power);
+                    CTEnum.BulletKind.PlayerBullet, Vector2.up, power);
             }
         }        
     }
@@ -102,12 +102,33 @@ public class Player : MonoBehaviour,IAttack
         anim.SetTrigger("Hit");
     }
 
+    #region 아이템 적용위함
+    public void SetPower(int addval)
+    {        
+        //상한선 하한선
+        power += addval; //
+    }
+    public void SetAddHP(float val) //HP가 최대 체력자체도 늘려줄것인지/ 늘려준다면 어디까지 늘려줄것인지..
+    {
+        HP += val;
+        if (HP > HPMax) //내 최대 체력보다 높아졌다면
+        {
+            HP = HPMax;
+        }
+    }
+    #endregion
+
     void OnTriggerEnter2D(Collider2D collision)//
     {
         if (collision.gameObject.CompareTag("Enemy")) //
         {
             Debug.Log("적과 충돌했음");
             Attacked(5);            
+        }
+        else if (collision.gameObject.CompareTag("Item") ) //아이템이면~
+        {
+            Item _item = collision.gameObject.GetComponent<Item>(); //
+            _item.Use(this); //
         }
     }
 }

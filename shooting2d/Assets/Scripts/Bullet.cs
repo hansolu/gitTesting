@@ -30,6 +30,11 @@ public class Bullet : MonoBehaviour
             spriteRenderer.flipY = false;
 
         IsActiving = true;
+        
+        if (_isplayer) //플레이어가 만들었을때만 디버그 하기로함
+        {
+            Debug.Log("플레이어의 총알의 힘 : " + bulletpower );
+        }        
     }
     public void InActive()
     {

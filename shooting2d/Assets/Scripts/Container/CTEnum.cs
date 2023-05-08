@@ -14,7 +14,24 @@ public class CTEnum
         PlayerBullet,
         //EnemyBullet_A,
         EnemyBullet_B,
-        EnemyBullet_C
+        EnemyBullet_C,
+            Boss,
+            Player_Follower
+    }
+    public enum ItemKind 
+    { 
+        PowerUp,
+        HPUp,
+        //SpeedUp,        
+
+        End
+    }
+    public enum ItemType
+    { 
+        AttackUP,
+        HPup,
+        Morph, 
+
 
     }
 }

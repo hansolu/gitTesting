@@ -161,7 +161,7 @@ public class GameManager : MonoBehaviour
     //    return tempBullet;
     //}
     #endregion
-    public void CreateBullet(Vector3 pos, bool isplayer, Sprite sprite, Vector3 bulletDir, float bulletpower) //총알의 방향도 내가 매개변수로 줘서 애가 어느쪽으로 쭉 갈지 정해주기..
+    public void CreateBullet(Vector3 pos, bool isplayer, /*Sprite sprite*/CTEnum.BulletKind _bulletkind, Vector3 bulletDir, float bulletpower) //총알의 방향도 내가 매개변수로 줘서 애가 어느쪽으로 쭉 갈지 정해주기..
         //그리고 적이랑 나랑 같은 총알 그림을 쓰고 있을텐데 이러면 헷갈리니까 그림도 바꿔주면 좋겠죠...
     {
         #region 그닥 좋지 않은 풀링의 예 ) 리스트와 일일이 검색해서 비활성화 된 애를 찾아서 쓰는 것..
@@ -189,7 +189,7 @@ public class GameManager : MonoBehaviour
             }
         }
 
-        tempBullet.SetInfo(pos, isplayer, sprite, bulletDir, bulletpower);//총알 만들때 총알 위치값으로 실제 원하는pos 를 적용 시켜줄수 있겠죠
+        tempBullet.SetInfo(pos, isplayer, BulletSprites[(int)_bulletkind], bulletDir, bulletpower);//총알 만들때 총알 위치값으로 실제 원하는pos 를 적용 시켜줄수 있겠죠
         tempBullet.StartShoot();
     }
 

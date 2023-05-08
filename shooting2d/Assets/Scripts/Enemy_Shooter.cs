@@ -68,8 +68,8 @@ public class Enemy_Shooter : Enemy
                 {
                     for (int i = 0; i < ShootPoint.Length; i++)
                     {
-                       GameManager.Instance.CreateBullet(ShootPoint[i].transform.position, false, 
-                           GameManager.Instance.BulletSprites[(int)CTEnum.BulletKind.EnemyBullet_B], Vector2.down, power);
+                       GameManager.Instance.CreateBullet(ShootPoint[i].transform.position, false,
+                           CTEnum.BulletKind.EnemyBullet_B, Vector2.down, power);
                     }                    
                 }
                 else if(EnemyKind == CTEnum.EnemyKind.Enemy_C)
@@ -77,7 +77,7 @@ public class Enemy_Shooter : Enemy
                     for (int i = 0; i < ShootPoint.Length; i++)
                     {
                         GameManager.Instance.CreateBullet(ShootPoint[i].transform.position, false,
-                            GameManager.Instance.BulletSprites[(int)CTEnum.BulletKind.EnemyBullet_C],
+                            CTEnum.BulletKind.EnemyBullet_C,
                             (GameManager.Instance.Player.transform.position - transform.position).normalized, power);
                     }
                 }                
