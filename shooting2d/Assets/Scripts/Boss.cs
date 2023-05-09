@@ -9,11 +9,13 @@ public class Boss : Enemy
     int ShootCount = 12;//360도로 몇개나 쏠건지
 
     float shootInterval = 0.8f;
-    //float shootIntervalCheck = 0;
+    float shootIntervalCheck = 0; //안쓰는데 일단 걍 더해봄
     Vector2 bulletpos = Vector2.zero;
+    
     
     public override void StartShoot()
     {
+        Debug.Log("aaaaaaa");
         ShootDegree = 360 / ShootCount;
         if (transform.childCount > 0 && ShootRadius <= 0)
         {
