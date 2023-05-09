@@ -14,8 +14,11 @@ public class Boss : Enemy
     
     
     public override void StartShoot()
-    {
-        Debug.Log("aaaaaaa");
+    {                
+        int aa = 4; //UISample에서의 내용
+
+        Debug.Log("aaaaaaa"); //main 브랜치의 내용
+
         ShootDegree = 360 / ShootCount;
         if (transform.childCount > 0 && ShootRadius <= 0)
         {
