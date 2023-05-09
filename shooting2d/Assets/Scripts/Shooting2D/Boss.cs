@@ -14,6 +14,7 @@ public class Boss : Enemy
     
     public override void StartShoot()
     {
+        int aa = 4;
         ShootDegree = 360 / ShootCount;
         if (transform.childCount > 0 && ShootRadius <= 0)
         {
