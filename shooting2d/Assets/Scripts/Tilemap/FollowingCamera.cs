@@ -14,7 +14,7 @@ public class FollowingCamera : MonoBehaviour
     float speed = 5; //
     public Transform playerTr;
     Vector3 vec = Vector3.zero;
-    
+        
     //float 카메라의 x 왼쪽 끝 최소점 = -10;
     //float 카메라의 x 오른쪽 끝 최대점 = 10;
 
@@ -26,7 +26,9 @@ public class FollowingCamera : MonoBehaviour
 
     void LateUpdate()
     {
-        vec.x = playerTr.position.x;
+        if (playerTr != null)
+        {
+            vec.x = playerTr.position.x;
         vec.y = playerTr.position.y + offsetY;
         vec.z = playerTr.position.z + offsetZ; //playerTr.position.z는 어차피 0이지만 3d일경우 z값도 있을것.
 
@@ -39,9 +41,15 @@ public class FollowingCamera : MonoBehaviour
         //{
         //    vec.x = 맵의 왼쪽끝 - 카메라 가로의 절반;
         //}
-
-        transform.position = Vector3.Lerp(transform.position, vec, Time.deltaTime * speed); //보간해주는 것이기 때문에 개인 취향.
+        
+            transform.position = Vector3.Lerp(transform.position, vec, Time.deltaTime * speed); //보간해주는 것이기 때문에 개인 취향.
+        }
         //Lerp = 보간. 카메라의 부드러운 움직임 위함
+
+        //if ()
+        //{
+        //    Input.mousePosition
+        //}
     }
 
 }
