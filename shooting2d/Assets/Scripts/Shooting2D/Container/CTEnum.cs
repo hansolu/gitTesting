@@ -1,5 +1,14 @@
 public class CTEnum
 {
+    public enum SceneKind
+    {
+        SampleScene, //0
+        Loading, //1
+        Shooting2D, //2
+    }
+
+    ///===========================
+    
     public enum EnemyKind
     { 
         Enemy_A,

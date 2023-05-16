@@ -39,6 +39,7 @@ public class ItemManager : MonoBehaviour
 
     public void CreateItem(CTEnum.ItemKind _kind, Vector2 _pos, CTStructure_Item item_info/*아이템 정보 전달..*/) 
     {
+        return; //아이템....구현 덜했었음..
         GameObject _obj;
         _obj = Instantiate(ItemPrefab[(int)_kind], transform);
        
