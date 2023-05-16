@@ -35,8 +35,8 @@ public class NextScene : MonoBehaviour
     //    LoadSceneManager.Instance.LoadSceneAsync(_nextScene);
     //}
 
-    void GoToLoadingScene() //단순 씬이동
-    {
-        LoadSceneManager.Instance.LoadScene(_nextScene);
-    }    
+    //void GoToLoadingScene() //단순 씬이동
+    //{
+    //    LoadSceneManager.Instance.LoadScene(_nextScene);
+    //}    
 }
