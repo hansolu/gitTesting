@@ -54,7 +54,7 @@ public class CTileManager : MonoBehaviour {
     public CPathNode[,] _tiles; //경로 정보 2차원 배열 //데이터적인것
     //타일정보배열과 인덱스가 일치해야함.
     public SpriteRenderer[,] tileSpriteRenderers; // 타일 오브젝트 2차원 배열. //시각적으로 해줄것.
-    public float _tileSize;
+    public float _tileSize; //타일 크기와 동일하게.
 
     public Camera camera;
     public int walkLayer=0;
